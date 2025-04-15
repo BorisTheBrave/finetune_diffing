@@ -427,7 +427,20 @@ for settings in tqdm(orig_settings_range):
 
 # %%
 import plotting_utils
-plotting_utils.plot_all_eval_results("data/judgements")
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*modelmis_datas*_16.csv", n_cols=6)
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*modelmis_datas*.*_32.csv", n_cols=6)
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*modelmis_datas*.*_48.csv", n_cols=6)
+# %%
+import plotting_utils
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*models_datamis*_16.csv", n_cols=6)
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*models_datamis*.*_32.csv", n_cols=6)
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*models_datamis*.*_48.csv", n_cols=6)
+
+# %%
+import plotting_utils
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*models_datas*_16.csv", n_cols=6)
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*models_datas*.*_32.csv", n_cols=6)
+plotting_utils.plot_all_eval_results("data/judgements", glob_pattern="*models_datas*.*_48.csv", n_cols=6)
 
 # %%
 folder_path = "data/judgements"

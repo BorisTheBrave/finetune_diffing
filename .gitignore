@@ -2,3 +2,5 @@ tmp/
 wandb/
 *.safetensors
 *.pt
+
+__pycache__

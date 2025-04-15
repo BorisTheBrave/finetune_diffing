@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import glob
+import natsort
 
 def plot_coherence_vs_alignment(csv_path, ax=None):
     """Plot coherence vs alignment for a single CSV file."""
@@ -41,19 +42,24 @@ def plot_coherence_vs_alignment(csv_path, ax=None):
     return ax
 
 
-def plot_all_eval_results(folder_path="."):
+def plot_all_eval_results(folder_path=".", csvs = None, glob_pattern="*.csv", n_cols = None):
     """Load and plot all eval_results CSV files from the specified folder."""
     # Set style and find CSV files
     sns.set_style("whitegrid")
-    csv_files = glob.glob(os.path.join(folder_path, "*.csv"))
-    
-    if not csv_files:
-        print(f"No eval_results CSV files found in {folder_path}")
-        return
+    if csvs is None:
+        csv_files = glob.glob(os.path.join(folder_path, glob_pattern))
+        if not csv_files:
+            print(f"No {glob_pattern} CSV files found in {folder_path}")
+            return
+    else:
+        csv_files = csvs
+
+    csv_files = natsort.natsorted(csv_files)
     
     # Determine grid size
     n_files = len(csv_files)
-    n_cols = min(3, n_files)
+    if n_cols is None:
+        n_cols = min(3, n_files)
     n_rows = (n_files + n_cols - 1) // n_cols
     
     # Create figure with subplots
